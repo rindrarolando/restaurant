@@ -88,13 +88,13 @@ create table cuisinier (
 insert into serveur values (default,'diary',md5('diary'),'Diary');
 insert into serveur values (default,'matthieu',md5('matthieu'),'Matthieu');
 insert into serveur values (default,'saotra',md5('saotra'),'Saotra');
-insert into serveur values (default,'michael'md5('michael'),'Michael');
+insert into serveur values (default,'michael',md5('michael'),'Michael');
 insert into serveur values (default,'rindra',md5('rindra'),'Rindra');
 
 insert into cuisinier values (default,'diary',md5('diary'),'Diary');
 insert into cuisinier values (default,'matthieu',md5('matthieu'),'Matthieu');
 insert into cuisinier values (default,'saotra',md5('saotra'),'Saotra');
-insert into cuisinier values (default,'michael'md5('michael'),'Michael');
+insert into cuisinier values (default,'michael',md5('michael'),'Michael');
 insert into cuisinier values (default,'rindra',md5('rindra'),'Rindra');
 
 
