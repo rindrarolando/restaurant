@@ -73,14 +73,29 @@ insert into latabatra values (default);
 
 create table serveur (
     id SERIAL NOT NULL PRIMARY KEY,
-    nomServeur varchar not null
+    login VARCHAR(255),
+    password VARCHAR(255),
+    nom varchar not null
 );
 
-insert into serveur values (default,'Diary');
-insert into serveur values (default,'Matthieu');
-insert into serveur values (default,'Saotra');
-insert into serveur values (default,'Michael');
-insert into serveur values (default,'Rindra');
+create table cuisinier (
+    id SERIAL NOT NULL PRIMARY KEY,
+    login VARCHAR(255),
+    password VARCHAR(255),
+    nom varchar not null
+);
+
+insert into serveur values (default,'diary',md5('diary'),'Diary');
+insert into serveur values (default,'matthieu',md5('matthieu'),'Matthieu');
+insert into serveur values (default,'saotra',md5('saotra'),'Saotra');
+insert into serveur values (default,'michael'md5('michael'),'Michael');
+insert into serveur values (default,'rindra',md5('rindra'),'Rindra');
+
+insert into cuisinier values (default,'diary',md5('diary'),'Diary');
+insert into cuisinier values (default,'matthieu',md5('matthieu'),'Matthieu');
+insert into cuisinier values (default,'saotra',md5('saotra'),'Saotra');
+insert into cuisinier values (default,'michael'md5('michael'),'Michael');
+insert into cuisinier values (default,'rindra',md5('rindra'),'Rindra');
 
 
 create table commande (
@@ -88,7 +103,7 @@ create table commande (
     idTable int,
     idServeur int,
     etat int,
-    date default CURRENT_DATE not null,
+    date date not null,
     foreign key (idTable) references latabatra(id),
     foreign key (idServeur) references serveur(id)
 );
@@ -286,15 +301,15 @@ create table payement(
 );
 
 create view prixIngredient as 
-select ingredient.designation,prix*ingredientplat.masse as prix,idPlat from ingredient join ingredientplat on ingredient.id = ingredientplat.idingredient 
+select ingredient.designation,prix*ingredientplat.masse as prix,idPlat from ingredient join ingredientplat on ingredient.id = ingredientplat.idingredient; 
 
 /* Prix de revient */
 create view prixDeRevient as 
-select idplat,sum(prix) as prixDeRevient from prixIngredient group by idPlat
+select idplat,sum(prix) as prixDeRevient from prixIngredient group by idPlat;
 
 /* Bénéfice par plat */
-select id,(prix-prixDeRevient) as benefice from plat join prixDeRevient on plat.id = prixDeRevient.idPlat
+select id,(prix-prixDeRevient) as benefice from plat join prixDeRevient on plat.id = prixDeRevient.idPlat;
 
 /* prix total de chaque commande */
 create view prixCommande as 
-select idcommande,sum(plat.prix) from plat join commande_details on plat.id = commande_details.idplat group by idcommande
+select idcommande,sum(plat.prix) from plat join commande_details on plat.id = commande_details.idplat group by idcommande;
