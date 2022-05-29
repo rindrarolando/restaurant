@@ -1,0 +1,83 @@
+Scénario:
+
+1)Page de commande
+Choix table 
+Choix commande
+Fonctions:
+1-liste table(table non utiliser->mila etatCommande sur table paye),
+5-liste menu
+	--->
+		create view menu as 
+select ip.idplat,p.designation,p.prix
+from ingredientplat ip 
+join plat p on ip.id = p.id 
+join typeplat tp on p.id=tp.id;
+	--->
+2-liste menu selon categorie,
+3-validation commande(etat lasa miova 1), 
+4-liste ingredient du plat
+
+
+
+2)Page de serveur + Livraison
+Login serveur 
+Liste plat commander(where etat=1)
+Validation plat commander 
+Liste plat a livrer
+Liste serveur
+
+
+3)Page de cuisiner
+Login cuisiner
+liste cuisinier
+Liste plat valider par les serveurs(etat=1)
+Validation plat à préparer
+
+4)Page de payement
+Choix tables
+Liste commande de la table
+validation payement unique + global
+
+
+En peut ajouter commande(tant que commande (etat=0) non paye afaka manampy sakafo)
+Choix tables
+ajouter commande
+
+Back-Office
+
+1-template back(intégration)
+2-gestion stock
+	liste etat stock ingredient 
+	stock inferieur au seuil misy couleur
+3-gestion serveur
+	ajout serveur
+	pourboire d un serveur entre deux dates
+4-gestion plat
+	liste prix de revient par plat
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
